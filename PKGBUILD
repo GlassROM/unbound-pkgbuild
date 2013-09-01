@@ -4,14 +4,14 @@
 
 pkgname=unbound
 pkgver=1.4.20
-pkgrel=2
+pkgrel=3
 pkgdesc='Validating, recursive, and caching DNS resolver'
 url='http://unbound.net/'
 license=('custom:BSD')
 arch=('i686' 'x86_64')
-depends=('openssl' 'ldns')
 makedepends=('expat')
 optdepends=('expat: unbound-anchor')
+depends=('openssl' 'ldns' 'libevent')
 backup=('etc/unbound/unbound.conf')
 source=("http://unbound.net/downloads/${pkgname}-${pkgver}.tar.gz"
         'service'
@@ -32,6 +32,7 @@ build() {
 		--sbindir=/usr/bin \
 		--disable-static \
 		--disable-rpath \
+		--with-libevent \
 		--with-conf-file=/etc/unbound/unbound.conf \
 		--with-pidfile=/run/unbound.pid
 	make
