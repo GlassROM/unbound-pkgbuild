@@ -4,7 +4,7 @@
 
 pkgname=unbound
 pkgver=1.5.5
-pkgrel=1
+pkgrel=2
 pkgdesc='Validating, recursive, and caching DNS resolver'
 url='http://unbound.net/'
 license=('custom:BSD')
@@ -34,7 +34,10 @@ build() {
 		--with-libevent \
 		--with-rootkey-file=/etc/trusted-key.key \
 		--with-conf-file=/etc/unbound/unbound.conf \
-		--with-pidfile=/run/unbound.pid
+		--with-pidfile=/run/unbound.pid \
+		--enable-relro-now \
+		--enable-pie \
+
 	make
 }
 
