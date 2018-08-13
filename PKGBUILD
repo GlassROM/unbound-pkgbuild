@@ -4,7 +4,7 @@
 
 pkgname=unbound
 pkgver=1.7.3
-pkgrel=3
+pkgrel=4
 pkgdesc='Validating, recursive, and caching DNS resolver'
 url='https://unbound.net/'
 license=('custom:BSD')
@@ -39,6 +39,9 @@ build() {
 		--enable-dnstap \
 		--enable-pie \
 		--enable-relro-now \
+		--enable-subnet \
+		--enable-tfo-client \
+		--enable-tfo-server \
 		--with-conf-file=/etc/unbound/unbound.conf \
 		--with-pidfile=/run/unbound.pid \
 		--with-rootkey-file=/etc/trusted-key.key \
