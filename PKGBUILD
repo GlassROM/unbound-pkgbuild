@@ -4,7 +4,7 @@
 
 pkgname=unbound
 pkgver=1.7.3
-pkgrel=5
+pkgrel=6
 pkgdesc='Validating, recursive, and caching DNS resolver'
 url='https://unbound.net/'
 license=('custom:BSD')
