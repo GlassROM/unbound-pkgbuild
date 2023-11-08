@@ -11,7 +11,7 @@ pkgrel=1
 pkgdesc="Validating, recursive, and caching DNS resolver"
 arch=(x86_64)
 url="https://unbound.net/"
-license=(BSD)
+license=(BSD-3-Clause)
 depends=(
   dnssec-anchors
   fstrm
