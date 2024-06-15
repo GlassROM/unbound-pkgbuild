@@ -90,6 +90,24 @@ build() {
   )
 
   cd $pkgname
+  echo 'diff --git a/services/listen_dnsport.c b/services/listen_dnsport.c
+index 7eb59a16..6a9f1a97 100644
+--- a/services/listen_dnsport.c
++++ b/services/listen_dnsport.c
+@@ -584,12 +584,8 @@ create_udp_sock(int family, int socktype, struct sockaddr* addr,
+ 			&action, (socklen_t)sizeof(action)) < 0) {
+ 
+ 			if (errno != EINVAL) {
+-				log_err("setsockopt(..., IP_MTU_DISCOVER, IP_PMTUDISC_OMIT...) failed: %s",
++				log_err("setsockopt(..., IP_MTU_DISCOVER, IP_PMTUDISC_OMIT...) failed: %s\n. Ignoring since running in gvisor.",
+ 					strerror(errno));
+-				sock_close(s);
+-				*noproto = 0;
+-				*inuse = 0;
+-				return -1;
+ 			}
+ 		}
+ 		else' | patch -p1
   ./configure "${configure_options[@]}"
   # prevent excessive overlinking due to libtool
   sed -i -e 's/ -shared / -Wl,-O1,--as-needed\0/g' libtool
